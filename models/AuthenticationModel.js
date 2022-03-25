@@ -2,22 +2,23 @@ const mongoose = require("mongoose");
 const schema = mongoose.schema;
 
 const authentication = new mongoose.Schema({
-  UserName: {
+  name: {
     type: String,
     required: true,
   },
-  Email: {
+  email: {
     type: String,
     required: true,
   },
-  Phone: {
+  passwordHash: {
     type: String,
     required: true,
   },
-  PasswordHash: {
+  type: {
     type: String,
-    required: true,
+    required: false,
   }
+ 
 },{ timestamps: true });
 
 const Authentication = mongoose.model("Authentication", authentication);

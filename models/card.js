@@ -1,26 +1,25 @@
 const mongoose = require("mongoose");
 const schema = mongoose.schema;
 
-const Payment = new mongoose.Schema({
-Name: {
+const Card = new mongoose.Schema({
+    cardNumber: {
     type: String,
     required: true,
   },
-MobileNumber: {
+  cardName: {
     type: String,
     required: true,
   },
-
-  OrderName: {
+  cvv: {
     type: String,
     required: true,
   },
-  
-Amount: {
+  date: {
     type: String,
     required: true,
-  },
+  }
+ 
 },{ timestamps: true });
 
-const Payments = mongoose.model("Payments", Payment);
-module.exports = Payments;
+const Cards = mongoose.model("Card", Card);
+module.exports = Cards;
