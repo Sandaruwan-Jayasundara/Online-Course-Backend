@@ -16,6 +16,10 @@ const upload=multer({storage:FileStorage});
 
 router.get('/', course.getAllCourses);
 router.post('/add',upload.single('file'),course.add);
+router.delete('/delete/:id',course.removeCourse);
+router.patch('/update/:id',upload.single('file'),course.updateCourse);
+
+
 
 
 
