@@ -27,12 +27,11 @@ const add = async(req, res) => {
 
 
 
-const getAllCourses = async (req, res) => {
-  console.log("WORKINGGGGGG");
+const getAllCategories = async (req, res) => {
   try {
-      const category = await newCategory.find();
+      const category = await CategoryModel.find();
       console.log(category);
-      res.status(200).json({data:category});
+      res.status(200).json(category);
 
   } catch (err) {
       res.status(500).json({message: err.message})
@@ -41,5 +40,5 @@ const getAllCourses = async (req, res) => {
 
 module.exports = {
   add,
-  getAllCourses
+  getAllCategories
 }
