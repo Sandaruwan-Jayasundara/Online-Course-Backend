@@ -35,6 +35,9 @@ app.use('/card',card);
 const category=require('./api/category');
 app.use('/category',category);
 
+const cart=require('./api/cart');
+app.use('/cart',cart);
+
 app.listen(PORT,() =>{
     console.log('Service is running');
 });
