@@ -18,7 +18,6 @@ const addToCart = async(req,res) => {
 }
 
 const getAllCartItems = async(req,res) => {
-    console.log("dfdfdf");
     try {
         const cartItems = await Cart.find({status:"pending"}).populate('courseId');
         res.status(200).json(cartItems);
@@ -75,7 +74,6 @@ const AlreadyInTheCart = async(req,res) => {
             cartItems.map(item=>{
                 total+=item.courseId.coursePrice;
             });
-            console.log(total);
             res.status(200).json({total:total});
       
         } catch (err) {
