@@ -6,18 +6,16 @@ const CategoryModel = require("../models/categoryModel");
 const add = async(req, res) => {
 
     const {CategoryName,CategoryNumber} = req.body;
+
+
     const image = req.file.originalname;
 
-    const categoryImage = "assets/images/" + image
-
-
-    const CategoryImage ="STILL NO IMAGE"
+    const CategoryImage = "assets/images/" + image
 
     const newCategory = new CategoryModel({
       CategoryName,
       CategoryNumber,
       CategoryImage,
-      CategoryImage:categoryImage,
   
     });
     const savedCategory = await newCategory.save();
@@ -42,7 +40,52 @@ const getAllCategories = async (req, res) => {
   }
 }
 
+const removeCategory = async (req, res) => {
+  if (req.params.id) {
+      const category = await CategoryModel.findById(req.params.id);
+      try {
+
+          const removedCategory = await category.remove();
+          res.status(200).json(removedCategory);
+
+      } catch (err) {
+          res.status(400).json({message: err.message})
+      }
+
+  }
+
+}
+
+
+const updateCategory=async(req,res)=>{
+  if(req.params.id){
+    const category = await CategoryModel.findById(req.params.id);
+
+    if(req.file==null){
+      category.CategoryImage=req.body.CategoryImage;
+        
+    }
+    if (req.body.CategoryName != null) {
+        category.CategoryName = req.body.CategoryName;
+    }
+    if (req.body.CategoryNumber != null) {
+      category.CategoryNumber = req.body.CategoryNumber;
+    }
+ 
+    try {
+      
+        const updatedCategory = await category.save();
+        res.status(200).json(updatedCategory);
+
+    } catch (err) {
+        res.status(400).json({message: err.message})
+    }
+  }
+}
+
 module.exports = {
   add,
-  getAllCategories
+  getAllCategories,
+  removeCategory,
+  updateCategory
 }
