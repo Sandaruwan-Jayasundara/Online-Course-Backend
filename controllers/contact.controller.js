@@ -31,6 +31,35 @@ const add = async(req, res) => {
 };
 
 
+const Update = async(req, res) => {
+  console.log("WORKING UPDATE PART AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+  console.log(req.body.contactId);
+  console.log(req.body.email);
+  console.log(req.body.message);
+
+  if(req.body.contactId){
+
+    const contact = await Contact.findById(req.body.contactId);
+
+    if (req.body.email != null) {
+      contact.email = req.body.email;
+    }
+    if (req.body.message != null) {
+      contact.message = req.body.message;
+    }
+ 
+    try {
+      
+        const updatedMessage = await contact.save();
+        console.log("Updated MEssage"+updatedMessage);
+        res.status(200).json({status: "Success"});
+
+    } catch (err) {
+        res.status(400).json({message: err.message})
+    }
+  }
+  
+  };
 
 
 const reply = async(req, res) => {
@@ -104,7 +133,8 @@ module.exports = {
   add,
   getAllMessage,
   reply,
-  deleteContact
+  deleteContact,
+  Update
   // Logout,
   // getUserData,
   // Update
