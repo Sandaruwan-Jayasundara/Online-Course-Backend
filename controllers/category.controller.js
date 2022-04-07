@@ -32,7 +32,6 @@ const add = async(req, res) => {
 const getAllCategories = async (req, res) => {
   try {
       const category = await CategoryModel.find();
-      console.log(category);
       res.status(200).json(category);
 
   } catch (err) {
@@ -63,7 +62,7 @@ const updateCategory=async(req,res)=>{
 
     if(req.file==null){
       category.CategoryImage=req.body.CategoryImage;
-        
+        console.log(req.body.CategoryImage);
     }
     if (req.body.CategoryName != null) {
         category.CategoryName = req.body.CategoryName;

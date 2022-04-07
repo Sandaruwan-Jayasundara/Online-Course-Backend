@@ -80,7 +80,7 @@ const Add = async(req, res) => {
 
       const user = await AuthenticationModel.findById(req.body.userId);
   
-      if (req.body.user != null) {
+      if (req.body.name != null) {
         user.name = req.body.name;
       }
       if (req.body.email != null) {
